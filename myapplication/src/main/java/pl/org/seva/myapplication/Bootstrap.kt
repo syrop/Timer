@@ -1,6 +1,6 @@
 package pl.org.seva.myapplication
 
-import android.support.v7.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate
 
 class Bootstrap {
 
