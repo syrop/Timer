@@ -1,8 +1,8 @@
 package pl.org.seva.myapplication
 
 import android.app.Application
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.conf.global
+import org.kodein.di.Kodein
+import org.kodein.di.conf.global
 
 class MyApplication : Application() {
     init {
