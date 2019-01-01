@@ -2,17 +2,15 @@ package pl.org.seva.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import io.reactivex.subjects.PublishSubject
 
 class MainActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        log.info("wiktor zaba")
-
-        Pipka().log()
-        EkstraKlasa().log()
+        log.info("line 1")
+        log.info("line 2")
+        log.info("line 3")
     }
 
     class Pipka {

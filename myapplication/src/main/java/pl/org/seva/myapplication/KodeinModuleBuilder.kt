@@ -9,12 +9,9 @@ import org.kodein.di.generic.multiton
 import org.kodein.di.generic.singleton
 import java.util.logging.Logger
 
-fun Context.module() = KodeinModuleBuilder(this).build()
+val Context.module get() = KodeinModuleBuilder(this).build()
 
-inline fun <reified T : Any> instance(): T {
-    val result by Kodein.global.instance<T>()
-    return result
-}
+inline fun <reified T : Any> instance() = Kodein.global.instance<T>()
 
 inline fun <reified A, reified T : Any> instance(arg: A): T {
     val result by Kodein.global.instance<A, T>(arg = arg)
