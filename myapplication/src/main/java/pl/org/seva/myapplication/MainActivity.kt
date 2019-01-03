@@ -8,15 +8,9 @@ class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        log.info("line 1")
-        log.info("line 2")
-        log.info("line 3")
-    }
+        println("wiktor line 1")
+        temp
+        println("wiktor line 2")
 
-    class Pipka {
-
-        fun log() {
-            log.info("wiktor pipka")
-        }
     }
 }
