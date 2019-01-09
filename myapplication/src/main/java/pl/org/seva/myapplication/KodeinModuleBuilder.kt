@@ -13,7 +13,10 @@ val Context.module get() = KodeinModuleBuilder(this).build()
 
 inline fun <reified T : Any> instance() = Kodein.global.instance<T>()
 
-inline fun <reified A, reified T : Any> instance(arg: A) = Kodein.global.instance<A, T>(arg = arg)
+inline fun <reified A, reified T : Any> instance(arg: A): T {
+    val result by Kodein.global.instance<A, T>(arg = arg)
+    return result
+}
 
 class KodeinModuleBuilder(private val ctx: Context) {
 
@@ -27,6 +30,8 @@ class KodeinModuleBuilder(private val ctx: Context) {
                 }
             }
         }
-        bind<Temp>() with singleton { Temp() }
+        bind<A>() with singleton { A() }
+        bind<B>() with singleton { B() }
+        bind<C>() with singleton { C() }
     }
 }

@@ -8,16 +8,10 @@ class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-        val onMapAvailable: Int.() -> Unit = {}
-
-        with (1) {
-            onMapAvailable()
-        }
-
-        println("wiktor line 1")
-        temp
-        println("wiktor line 2")
-
+        a
+        log.info("wiktor a")
+        b
+        log.info("wiktor b")
+        c
     }
 }
