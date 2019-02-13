@@ -13,10 +13,7 @@ val Context.module get() = KodeinModuleBuilder(this).build()
 
 inline fun <reified T : Any> instance() = Kodein.global.instance<T>()
 
-inline fun <reified A, reified T : Any> instance(arg: A): T {
-    val result by Kodein.global.instance<A, T>(arg = arg)
-    return result
-}
+inline fun <reified A, reified T : Any> instance(arg: A) = Kodein.global.instance<A, T>(arg = arg)
 
 class KodeinModuleBuilder(private val ctx: Context) {
 

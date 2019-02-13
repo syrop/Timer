@@ -4,23 +4,19 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-fun String.println() = println(this)
-
 class MainActivity: AppCompatActivity() {
 
-    var s: String? = null
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        s = "wiktor foo"
+        val a = A()
+        val b = B()
+        val c = C()
 
-        if (s?.println() == null) {
-            println("wiktor null")
-        }
-        else {
-            println("wiktor not null")
-        }
+        a.log.info("wiktor a")
+        b.log.info("wiktor b")
+        c.log.info("wiktor c")
     }
 }
