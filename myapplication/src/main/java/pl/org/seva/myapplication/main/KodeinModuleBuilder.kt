@@ -1,4 +1,4 @@
-package pl.org.seva.myapplication
+package pl.org.seva.myapplication.main
 
 import android.content.Context
 import org.kodein.di.Kodein
@@ -7,6 +7,7 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.multiton
 import org.kodein.di.generic.singleton
+import pl.org.seva.myapplication.BuildConfig
 import java.util.logging.Logger
 
 val Context.module get() = KodeinModuleBuilder(this).build()
@@ -27,8 +28,5 @@ class KodeinModuleBuilder(private val ctx: Context) {
                 }
             }
         }
-        bind<A>() with singleton { A() }
-        bind<B>() with singleton { B() }
-        bind<C>() with singleton { C() }
     }
 }

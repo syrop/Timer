@@ -1,8 +1,9 @@
-package pl.org.seva.myapplication
+package pl.org.seva.myapplication.main
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import java.util.*
 
 class MainActivity: AppCompatActivity() {
 
@@ -11,12 +12,10 @@ class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val a = A()
-        val b = B()
-        val c = C()
+        val a = mutableListOf(1)
 
-        a.log.info("wiktor a")
-        b.log.info("wiktor b")
-        c.log.info("wiktor c")
+        println("wiktor ${!a.contains(1) && a.add(1)}")
+        println("wiktor ${!a.contains(2) && a.add(2)}")
+        println("wiktor ${Arrays.toString(a.toTypedArray())}")
     }
 }

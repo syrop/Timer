@@ -1,4 +1,4 @@
-package pl.org.seva.myapplication
+package pl.org.seva.myapplication.main
 
 import android.app.Application
 import org.kodein.di.Kodein
