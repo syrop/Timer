@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_main.*
 import pl.org.seva.myapplication.R
@@ -28,9 +27,8 @@ class MainFragment : Fragment() {
 
         Observable.interval(20, TimeUnit.SECONDS, Schedulers.io())
                 .take(1)
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    model.liveInt.value = 1
+                    model.liveInt.postValue(1)
                 }
 
         model.liveInt.observe(this) { value ->
