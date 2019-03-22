@@ -19,40 +19,22 @@
 
 package pl.org.seva.timer.main
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.first_fragment.*
 import pl.org.seva.timer.R
 import pl.org.seva.timer.main.extension.inflate
-import pl.org.seva.timer.main.extension.observe
-import pl.org.seva.timer.main.extension.viewModel
-import java.util.concurrent.TimeUnit
+import pl.org.seva.timer.main.extension.nav
 
 class FirstFragment : Fragment() {
-
-    private val model by viewModel<MainFragmentViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
             inflate(R.layout.first_fragment, container)
 
-    @SuppressLint("SetTextI18n", "CheckResult")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        Observable.interval(20, TimeUnit.SECONDS, Schedulers.io())
-                .take(1)
-                .subscribe {
-                    model.liveInt.postValue(1)
-                }
-
-        model.liveInt.observe(this) { value ->
-            println("wiktor int: $value")
-            text.text = "wiktor $value"
-        }
+        next_fab.setOnClickListener { nav(R.id.action_firstFragment_to_secondFragment) }
     }
 }

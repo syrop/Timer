@@ -19,3 +19,15 @@
 
 package pl.org.seva.timer.main
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import pl.org.seva.timer.R
+import pl.org.seva.timer.main.extension.inflate
+
+class SecondFragment : Fragment() {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+            inflate(R.layout.second_fragment, container)
+}
