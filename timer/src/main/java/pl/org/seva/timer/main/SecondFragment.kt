@@ -17,11 +17,5 @@
  * If you like this program, consider donating bitcoin: bc1qncxh5xs6erq6w4qz3a7xl7f50agrgn3w58dsfp
  */
 
-package pl.org.seva.timer.main.extension
+package pl.org.seva.timer.main
 
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-
-fun <T> LiveData<T>.observe(owner: LifecycleOwner, f: (T) -> Unit) =
-        observe(owner, Observer<T> { f(it) })

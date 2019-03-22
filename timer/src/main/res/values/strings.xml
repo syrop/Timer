@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Timer</string>
+
+    <!-- First Fragment -->
+    <string name="first_fragment_label">First Fragment</string>
+
+    <!-- Second Fragment -->
+    <string name="second_fragment_label">Second Fragment</string>
 </resources>
