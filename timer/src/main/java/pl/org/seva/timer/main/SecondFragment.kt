@@ -24,15 +24,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import kotlinx.android.synthetic.main.second_fragment.minutes
-import kotlinx.android.synthetic.main.second_fragment.seconds
+import kotlinx.android.synthetic.main.second_fragment.*
 import pl.org.seva.timer.R
 import pl.org.seva.timer.main.extension.inflate
 import pl.org.seva.timer.main.extension.viewModel
+import pl.org.seva.timer.main.extension.observe
 
 class SecondFragment : Fragment() {
 
     private val vm by viewModel<ViewModel>()
+
+    private val avm by viewModel<MainActivity.ActivityViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
             inflate(R.layout.second_fragment, container)
@@ -42,6 +44,9 @@ class SecondFragment : Fragment() {
 
         timer.secondsWithLiveData(vm.seconds).observe(this) { seconds.text = it.toString() }
         timer.minutesWithLiveData(vm.minutes).observe(this) { minutes.text = it.toString() }
+
+        avm.seconds.observe(this) { stable_seconds.text = it.toString() }
+        avm.minutes.observe(this) { stable_minutes.text = it.toString() }
     }
 
     class ViewModel : androidx.lifecycle.ViewModel() {

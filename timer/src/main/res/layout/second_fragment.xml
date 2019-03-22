@@ -38,7 +38,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/seconds"
-        android:layout_marginTop="16dp"
         android:textSize="34sp"
         app:layout_constraintLeft_toRightOf="@id/margin"/>
 
@@ -48,6 +47,44 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/minutes_label"
         android:textSize="48sp"
+        tools:text="0"
+        app:layout_constraintLeft_toRightOf="@id/margin"/>
+
+    <TextView
+        android:id="@+id/stable_seconds_label"
+        android:text="@string/second_fragment_stable_seconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/minutes"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/margin"/>
+
+    <TextView
+        android:id="@+id/stable_seconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/stable_seconds_label"
+        android:textSize="20sp"
+        tools:text="0"
+        app:layout_constraintLeft_toRightOf="@id/margin"/>
+
+    <TextView
+        android:id="@+id/stable_minutes_label"
+        android:text="@string/second_fragment_stable_minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/stable_seconds"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/margin"/>
+
+    <TextView
+        android:id="@+id/stable_minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/stable_minutes_label"
+        android:textSize="20sp"
         tools:text="0"
         app:layout_constraintLeft_toRightOf="@id/margin"/>
 

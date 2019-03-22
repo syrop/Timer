@@ -29,10 +29,13 @@ import pl.org.seva.timer.R
 import pl.org.seva.timer.main.extension.inflate
 import pl.org.seva.timer.main.extension.nav
 import pl.org.seva.timer.main.extension.viewModel
+import pl.org.seva.timer.main.extension.observe
 
 class FirstFragment : Fragment() {
 
     private val vm by viewModel<ViewModel>()
+
+    private val avm by viewModel<MainActivity.ActivityViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
             inflate(R.layout.first_fragment, container)
@@ -43,6 +46,9 @@ class FirstFragment : Fragment() {
 
         timer.secondsWithLiveData(vm.seconds).observe(this) { seconds.text = it.toString() }
         timer.minutesWithLiveData(vm.minutes).observe(this) { minutes.text = it.toString() }
+
+        vm.seconds.observe(this) { stable_seconds.text = it.toString() }
+        vm.minutes.observe(this) { stable_minutes.text = it.toString() }
     }
 
     class ViewModel : androidx.lifecycle.ViewModel() {

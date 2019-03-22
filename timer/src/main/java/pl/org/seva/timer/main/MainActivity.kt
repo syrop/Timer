@@ -22,14 +22,18 @@ package pl.org.seva.timer.main
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.org.seva.timer.R
+import pl.org.seva.timer.main.extension.viewModel
 
 class MainActivity: AppCompatActivity() {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
+
+    private val vm by viewModel<ActivityViewModel>()
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +42,15 @@ class MainActivity: AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         NavigationUI.setupActionBarWithNavController(this, navController)
+
+        timer.secondsWithLiveData(vm.seconds).observe(this) {}
+        timer.minutesWithLiveData(vm.minutes).observe(this) {}
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()
+
+    class ActivityViewModel : androidx.lifecycle.ViewModel() {
+        val seconds by lazy { MutableLiveData<Int>() }
+        val minutes by lazy { MutableLiveData<Int>() }
+    }
 }

@@ -5,9 +5,13 @@
     <string name="first_fragment_label">First Fragment</string>
     <string name="first_fragment_seconds">Seconds</string>
     <string name="first_fragment_minutes">Minutes</string>
+    <string name="first_fragment_stable_seconds">Stable seconds (from activity)</string>
+    <string name="first_fragment_stable_minutes">Stable minutes (from activity)</string>
 
     <!-- Second Fragment -->
     <string name="second_fragment_label">Second Fragment</string>
     <string name="second_fragment_seconds">Seconds</string>
     <string name="second_fragment_minutes">Minutes</string>
+    <string name="second_fragment_stable_seconds">Stable seconds (from activity)</string>
+    <string name="second_fragment_stable_minutes">Stable minutes (from activity)</string>
 </resources>
