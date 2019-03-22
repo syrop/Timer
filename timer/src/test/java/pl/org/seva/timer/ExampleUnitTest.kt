@@ -1,4 +1,4 @@
-package pl.org.seva.myapplication
+package pl.org.seva.timer
 
 import org.junit.Test
 

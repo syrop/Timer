@@ -1,4 +1,4 @@
-package pl.org.seva.myapplication.main
+package pl.org.seva.timer.main
 
 import androidx.appcompat.app.AppCompatDelegate
 

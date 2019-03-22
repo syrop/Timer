@@ -1,4 +1,4 @@
-package pl.org.seva.myapplication.main
+package pl.org.seva.timer.main
 
 import android.content.Context
 import org.kodein.di.Kodein
@@ -7,7 +7,7 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.multiton
 import org.kodein.di.generic.singleton
-import pl.org.seva.myapplication.BuildConfig
+import pl.org.seva.timer.BuildConfig
 import java.util.logging.Logger
 
 val Context.module get() = KodeinModuleBuilder(this).build()

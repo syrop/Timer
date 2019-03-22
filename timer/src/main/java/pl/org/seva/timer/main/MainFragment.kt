@@ -1,4 +1,4 @@
-package pl.org.seva.myapplication.main
+package pl.org.seva.timer.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_main.*
-import pl.org.seva.myapplication.R
-import pl.org.seva.myapplication.main.extension.inflate
-import pl.org.seva.myapplication.main.extension.observe
-import pl.org.seva.myapplication.main.extension.viewModel
+import pl.org.seva.timer.R
+import pl.org.seva.timer.main.extension.inflate
+import pl.org.seva.timer.main.extension.observe
+import pl.org.seva.timer.main.extension.viewModel
 import java.util.concurrent.TimeUnit
 
 class MainFragment : Fragment() {

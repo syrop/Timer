@@ -1,4 +1,4 @@
-package pl.org.seva.myapplication
+package pl.org.seva.timer
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
