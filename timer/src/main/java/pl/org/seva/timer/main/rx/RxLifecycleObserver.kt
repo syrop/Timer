@@ -17,10 +17,18 @@
  * If you like this program, consider donating bitcoin: bc1qncxh5xs6erq6w4qz3a7xl7f50agrgn3w58dsfp
  */
 
-package pl.org.seva.timer.main.extension
+package pl.org.seva.timer.main.rx
 
-import androidx.lifecycle.*
-import io.reactivex.Observable
-import pl.org.seva.timer.main.rx.LiveObservable
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import io.reactivex.disposables.Disposable
 
-fun <T> Observable<T>.withLiveData(liveData: MutableLiveData<T>) = LiveObservable(this, liveData)
+class RxLifecycleObserver(private val disposable: Disposable) : LifecycleObserver {
+
+    @Suppress("unused")
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    private fun onEvent() {
+        disposable.dispose()
+    }
+}

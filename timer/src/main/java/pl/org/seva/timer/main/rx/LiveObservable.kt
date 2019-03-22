@@ -17,11 +17,20 @@
  * If you like this program, consider donating bitcoin: bc1qncxh5xs6erq6w4qz3a7xl7f50agrgn3w58dsfp
  */
 
-package pl.org.seva.timer.main
+package pl.org.seva.timer.main.rx
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import io.reactivex.Observable
+import pl.org.seva.timer.main.extension.observe
 
-class MainFragmentViewModel : ViewModel() {
-    val liveInt by lazy { MutableLiveData<Int>() }
+data class LiveObservable<T>(
+        private val observable: Observable<T>,
+        private val liveData: MutableLiveData<T>) {
+
+    fun observe(owner: LifecycleOwner, observer: (T) -> Unit) {
+        liveData.observe(owner, observer)
+        val disposable = observable.subscribe { liveData.postValue(it) }
+        owner.lifecycle.addObserver(RxLifecycleObserver(disposable))
+    }
 }

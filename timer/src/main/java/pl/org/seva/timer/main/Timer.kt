@@ -20,11 +20,11 @@
 package pl.org.seva.timer.main
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
-import pl.org.seva.timer.main.extension.observe
+import pl.org.seva.timer.main.extension.withLiveData
 import java.util.concurrent.TimeUnit
 
 val timer by instance<Timer>()
@@ -44,11 +44,15 @@ class Timer {
                 .subscribe { minutes.onNext(it) }
     }
 
-    fun observeSeconds(owner: LifecycleOwner, observer: (Int) -> Unit) {
-        seconds.observe(owner, observer)
-    }
+    fun secondsWithLiveData(liveData: MutableLiveData<Int>) = seconds
+            .delay(DELAY_MS, TimeUnit.MILLISECONDS)
+            .withLiveData(liveData)
 
-    fun observeMinutes(owner: LifecycleOwner, observer: (Int) -> Unit) {
-        minutes.observe(owner, observer)
+    fun minutesWithLiveData(liveData: MutableLiveData<Int>) = minutes
+            .delay(DELAY_MS, TimeUnit.MILLISECONDS)
+            .withLiveData(liveData)
+
+    companion object {
+        const val DELAY_MS = 200L
     }
 }
