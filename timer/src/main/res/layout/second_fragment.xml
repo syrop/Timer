@@ -15,11 +15,29 @@
         app:layout_constraintGuide_begin="16dp"/>
 
     <TextView
+        android:id="@+id/seconds_label"
+        android:text="@string/second_fragment_seconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="34sp"
+        app:layout_constraintLeft_toRightOf="@id/margin"/>
+
+    <TextView
+        android:id="@+id/seconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/seconds_label"
+        android:textSize="48sp"
+        tools:text="0"
+        app:layout_constraintLeft_toRightOf="@id/margin"/>
+
+    <TextView
         android:id="@+id/minutes_label"
         android:text="@string/second_fragment_minutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seconds"
         android:layout_marginTop="16dp"
         android:textSize="34sp"
         app:layout_constraintLeft_toRightOf="@id/margin"/>
@@ -29,24 +47,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/minutes_label"
-        android:textSize="48sp"
-        tools:text="0"
-        app:layout_constraintLeft_toRightOf="@id/margin"/>
-
-    <TextView
-        android:id="@+id/seconds_label"
-        android:text="@string/second_fragment_seconds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/minutes"
-        android:textSize="34sp"
-        app:layout_constraintLeft_toRightOf="@id/margin"/>
-
-    <TextView
-        android:id="@+id/seconds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/seconds_label"
         android:textSize="48sp"
         tools:text="0"
         app:layout_constraintLeft_toRightOf="@id/margin"/>

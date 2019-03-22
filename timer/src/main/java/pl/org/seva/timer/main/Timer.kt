@@ -32,7 +32,7 @@ val timer by instance<Timer>()
 @SuppressLint("CheckResult")
 class Timer {
 
-    private val timer = Observable.interval(20, TimeUnit.SECONDS, Schedulers.io())
+    private val timer = Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
 
     private val seconds= BehaviorSubject.createDefault(0)
     private val minutes = BehaviorSubject.createDefault(0)

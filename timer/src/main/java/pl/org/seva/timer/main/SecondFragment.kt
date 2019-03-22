@@ -23,6 +23,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.second_fragment.*
 import pl.org.seva.timer.R
 import pl.org.seva.timer.main.extension.inflate
 
@@ -30,4 +31,11 @@ class SecondFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
             inflate(R.layout.second_fragment, container)
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        timer.observeMinutes(this) { minutes.text = it.toString() }
+        timer.observeSeconds(this) { seconds.text = it.toString() }
+    }
 }

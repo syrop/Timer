@@ -36,5 +36,8 @@ class FirstFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         next_fab.setOnClickListener { nav(R.id.action_firstFragment_to_secondFragment) }
+
+        timer.observeMinutes(this) { minutes.text = it.toString() }
+        timer.observeSeconds(this) { seconds.text = it.toString() }
     }
 }
