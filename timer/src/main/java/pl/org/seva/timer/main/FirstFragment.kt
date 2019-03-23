@@ -44,11 +44,11 @@ class FirstFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         next_fab.setOnClickListener { nav(R.id.action_firstFragment_to_secondFragment) }
 
-        timer.secondsWithLiveData(vm.seconds).observe(this) { seconds.text = it.toString() }
-        timer.minutesWithLiveData(vm.minutes).observe(this) { minutes.text = it.toString() }
+        (timer seconds vm.seconds).observe(this) { seconds.text = it.toString() }
+        (timer minutes vm.minutes).observe(this) { minutes.text = it.toString() }
 
-        vm.seconds.observe(this) { stable_seconds.text = it.toString() }
-        vm.minutes.observe(this) { stable_minutes.text = it.toString() }
+        avm.seconds.observe(this) { stable_seconds.text = it.toString() }
+        avm.minutes.observe(this) { stable_minutes.text = it.toString() }
     }
 
     class ViewModel : androidx.lifecycle.ViewModel() {

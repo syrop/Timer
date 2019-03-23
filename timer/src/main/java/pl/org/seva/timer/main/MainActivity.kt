@@ -43,8 +43,8 @@ class MainActivity: AppCompatActivity() {
         setSupportActionBar(toolbar)
         NavigationUI.setupActionBarWithNavController(this, navController)
 
-        timer.secondsWithLiveData(vm.seconds).observe(this) {}
-        timer.minutesWithLiveData(vm.minutes).observe(this) {}
+        (timer seconds vm.seconds).observe(this) {}
+        (timer minutes vm.minutes).observe(this) {}
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()

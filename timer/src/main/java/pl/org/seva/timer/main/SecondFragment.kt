@@ -42,8 +42,8 @@ class SecondFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        timer.secondsWithLiveData(vm.seconds).observe(this) { seconds.text = it.toString() }
-        timer.minutesWithLiveData(vm.minutes).observe(this) { minutes.text = it.toString() }
+        (timer seconds vm.seconds).observe(this) { seconds.text = it.toString() }
+        (timer minutes vm.minutes).observe(this) { minutes.text = it.toString() }
 
         avm.seconds.observe(this) { stable_seconds.text = it.toString() }
         avm.minutes.observe(this) { stable_minutes.text = it.toString() }

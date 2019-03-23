@@ -24,7 +24,7 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
-import pl.org.seva.timer.main.extension.withLiveData
+import pl.org.seva.timer.main.extension.plus
 import java.util.concurrent.TimeUnit
 
 val timer by instance<Timer>()
@@ -44,13 +44,11 @@ class Timer {
                 .subscribe { minutes.onNext(it) }
     }
 
-    fun secondsWithLiveData(liveData: MutableLiveData<Int>) = seconds
-            .delay(DELAY_MS, TimeUnit.MILLISECONDS)
-            .withLiveData(liveData)
+    infix fun seconds(liveData: MutableLiveData<Int>) =
+            seconds.delay(DELAY_MS, TimeUnit.MILLISECONDS) + liveData
 
-    fun minutesWithLiveData(liveData: MutableLiveData<Int>) = minutes
-            .delay(DELAY_MS, TimeUnit.MILLISECONDS)
-            .withLiveData(liveData)
+    infix fun minutes(liveData: MutableLiveData<Int>) =
+            minutes.delay(DELAY_MS, TimeUnit.MILLISECONDS) + liveData
 
     companion object {
         const val DELAY_MS = 200L

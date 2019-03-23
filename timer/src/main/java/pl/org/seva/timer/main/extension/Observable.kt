@@ -23,4 +23,4 @@ import androidx.lifecycle.*
 import io.reactivex.Observable
 import pl.org.seva.timer.main.rx.LiveObservable
 
-fun <T> Observable<T>.withLiveData(liveData: MutableLiveData<T>) = LiveObservable(this, liveData)
+operator fun <T> Observable<T>.plus(liveData: MutableLiveData<T>) = LiveObservable(this, liveData)
