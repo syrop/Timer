@@ -27,13 +27,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.org.seva.timer.R
+import pl.org.seva.timer.main.extension.invoke
 import pl.org.seva.timer.main.extension.viewModel
 
 class MainActivity: AppCompatActivity() {
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
 
-    private val vm by viewModel<ActivityViewModel>()
+    private val avm by viewModel<ActivityViewModel>()
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,8 +44,8 @@ class MainActivity: AppCompatActivity() {
         setSupportActionBar(toolbar)
         NavigationUI.setupActionBarWithNavController(this, navController)
 
-        (timer seconds vm.seconds).observe(this) {}
-        (timer minutes vm.minutes).observe(this) {}
+        (timer seconds avm.seconds to this) {}
+        (timer minutes avm.minutes to this) {}
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()

@@ -27,8 +27,8 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.android.synthetic.main.second_fragment.*
 import pl.org.seva.timer.R
 import pl.org.seva.timer.main.extension.inflate
+import pl.org.seva.timer.main.extension.invoke
 import pl.org.seva.timer.main.extension.viewModel
-import pl.org.seva.timer.main.extension.observe
 
 class SecondFragment : Fragment() {
 
@@ -42,11 +42,11 @@ class SecondFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        (timer seconds vm.seconds).observe(this) { seconds.text = it.toString() }
-        (timer minutes vm.minutes).observe(this) { minutes.text = it.toString() }
+        (timer seconds vm.seconds to this) { seconds.text = it.toString() }
+        (timer minutes vm.minutes to this) { minutes.text = it.toString() }
 
-        avm.seconds.observe(this) { stable_seconds.text = it.toString() }
-        avm.minutes.observe(this) { stable_minutes.text = it.toString() }
+        (avm.seconds to this) { stable_seconds.text = it.toString() }
+        (avm.minutes to this) { stable_minutes.text = it.toString() }
     }
 
     class ViewModel : androidx.lifecycle.ViewModel() {

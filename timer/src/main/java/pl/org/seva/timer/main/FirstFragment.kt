@@ -29,7 +29,8 @@ import pl.org.seva.timer.R
 import pl.org.seva.timer.main.extension.inflate
 import pl.org.seva.timer.main.extension.nav
 import pl.org.seva.timer.main.extension.viewModel
-import pl.org.seva.timer.main.extension.observe
+import pl.org.seva.timer.main.extension.invoke
+
 
 class FirstFragment : Fragment() {
 
@@ -44,11 +45,11 @@ class FirstFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         next_fab.setOnClickListener { nav(R.id.action_firstFragment_to_secondFragment) }
 
-        (timer seconds vm.seconds).observe(this) { seconds.text = it.toString() }
-        (timer minutes vm.minutes).observe(this) { minutes.text = it.toString() }
+        (timer seconds vm.seconds to this) { seconds.text = it.toString() }
+        (timer minutes vm.minutes to this) { minutes.text = it.toString() }
 
-        avm.seconds.observe(this) { stable_seconds.text = it.toString() }
-        avm.minutes.observe(this) { stable_minutes.text = it.toString() }
+        (avm.seconds to this) { stable_seconds.text = it.toString() }
+        (avm.minutes to this) { stable_minutes.text = it.toString() }
     }
 
     class ViewModel : androidx.lifecycle.ViewModel() {
