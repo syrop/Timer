@@ -28,5 +28,5 @@ operator fun <T> Pair<LiveData<T>, LifecycleOwner>.invoke(observer: (T) -> Unit)
         first.observe(second, observer)
 
 @JvmName("liveObservableLifecycleOwnerObserve")
-infix operator fun <T> Pair<LiveObservable<T>, LifecycleOwner>.invoke(observer: (T) -> Unit) =
+operator fun <T> Pair<LiveObservable<T>, LifecycleOwner>.invoke(observer: (T) -> Unit) =
         first.observe(second, observer)
