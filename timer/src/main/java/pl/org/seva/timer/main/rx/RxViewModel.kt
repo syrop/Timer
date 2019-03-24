@@ -17,16 +17,27 @@
  * If you like this program, consider donating bitcoin: bc1qncxh5xs6erq6w4qz3a7xl7f50agrgn3w58dsfp
  */
 
-package pl.org.seva.timer.main.extension
+package pl.org.seva.timer.main.rx
 
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import pl.org.seva.timer.main.rx.LiveObservable
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
+import org.kodein.di.LazyDelegate
+import kotlin.reflect.KProperty
 
-@JvmName("liveDataLifecycleOwnerObserve")
-operator fun <T> Pair<LiveData<T>, LifecycleOwner>.invoke(observer: (T) -> Unit) =
-        first.observe(second, observer)
+open class RxViewModel : ViewModel() {
+    private val cd = CompositeDisposable()
 
-@JvmName("liveObservableLifecycleOwnerObserve")
-operator fun <T> Pair<LiveObservable<T>, LifecycleOwner>.invoke(observer: (T) -> Unit) =
-        first.observe(second, observer)
+    protected fun <T> disposableLiveData(observable: Observable<T>) = object : LazyDelegate<MutableLiveData<T>> {
+        override fun provideDelegate(receiver: Any?, prop: KProperty<Any?>) = lazy {
+           MutableLiveData<T>().apply {
+               cd.add(observable.subscribe { this.postValue(it) })
+           }
+        }
+    }
+
+    override fun onCleared() {
+        cd.dispose()
+    }
+}

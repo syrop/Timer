@@ -25,6 +25,7 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import pl.org.seva.timer.main.extension.plus
+import pl.org.seva.timer.main.rx.RxViewModel
 import java.util.concurrent.TimeUnit
 
 val timer by instance<Timer>()
@@ -37,6 +38,10 @@ class Timer {
     private val seconds = BehaviorSubject.createDefault(0)
     private val minutes = BehaviorSubject.createDefault(0)
 
+    val secondsObservable: Observable<Int> = seconds.delay(DELAY_MS, TimeUnit.MILLISECONDS)
+    val minutesObservable: Observable<Int> = minutes.delay(DELAY_MS, TimeUnit.MILLISECONDS)
+
+
     init {
         timer.subscribe { seconds.onNext(it.toInt()) }
         seconds.filter { it % 60 == 0 }
@@ -44,11 +49,14 @@ class Timer {
                 .subscribe { minutes.onNext(it) }
     }
 
-    infix fun seconds(liveData: MutableLiveData<Int>) =
-            seconds.delay(DELAY_MS, TimeUnit.MILLISECONDS) + liveData
+    infix fun seconds(liveData: MutableLiveData<Int>) = secondsObservable + liveData
 
-    infix fun minutes(liveData: MutableLiveData<Int>) =
-            minutes.delay(DELAY_MS, TimeUnit.MILLISECONDS) + liveData
+    infix fun minutes(liveData: MutableLiveData<Int>) = minutesObservable + liveData
+
+    class ViewModel : RxViewModel() {
+        val seconds by disposableLiveData(timer.secondsObservable)
+        val minutes by disposableLiveData(timer.minutesObservable)
+    }
 
     companion object {
         const val DELAY_MS = 200L
