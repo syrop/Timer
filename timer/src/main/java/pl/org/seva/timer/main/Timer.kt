@@ -41,7 +41,6 @@ class Timer {
     val secondsObservable: Observable<Int> = seconds.delay(DELAY_MS, TimeUnit.MILLISECONDS)
     val minutesObservable: Observable<Int> = minutes.delay(DELAY_MS, TimeUnit.MILLISECONDS)
 
-
     init {
         timer.subscribe { seconds.onNext(it.toInt()) }
         seconds.filter { it % 60 == 0 }
