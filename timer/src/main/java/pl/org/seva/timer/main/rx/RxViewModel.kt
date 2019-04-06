@@ -19,6 +19,7 @@
 
 package pl.org.seva.timer.main.rx
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
@@ -27,7 +28,7 @@ import io.reactivex.disposables.CompositeDisposable
 open class RxViewModel : ViewModel() {
     private val cd = CompositeDisposable()
 
-    protected fun <T> disposableLiveData(observable: Observable<T>) = lazy {
+    protected fun <T> disposableLiveData(observable: Observable<T>): Lazy<LiveData<T>> = lazy {
         MutableLiveData<T>().apply {
             cd.add(observable.subscribe { this.postValue(it) })
         }
